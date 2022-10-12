@@ -1,0 +1,10 @@
+{
+  "app_name": "web3-sample-app",
+  "home": "Home",
+  "about": "About",
+  "address": "Address",
+  "balance": "Balance",
+  "block": "Last Block",
+  "connect": "Connect",
+  "wallet": "Wallet"
+}
