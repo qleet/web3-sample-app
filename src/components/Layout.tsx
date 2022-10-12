@@ -88,10 +88,10 @@ const Header = () => {
       title: 'Home',
       link: '/',
     },
-    {
-      title: 'About',
-      link: '/about',
-    },
+    // {
+    //   title: 'About',
+    //   link: '/about',
+    // },
   ]
   const drawerList = () => (
     <Box
