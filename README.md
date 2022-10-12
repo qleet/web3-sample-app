@@ -2,8 +2,10 @@
 
 ## Requirements
 
+* [curl](https://help.ubidots.com/en/articles/2165289-learn-how-to-install-run-curl-on-windows-macosx-linux)
 * [nvm](https://github.com/nvm-sh/nvm#install--update-script)
   ```bash
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v$(curl -sL https://api.github.com/repos/nvm-sh/nvm/releases/latest  | grep '"tag_name":' | awk -F '"' '{printf("%s",$4)}' | cut -c 2-)/install.sh | bash
   nvm install v18.10.0
   nvm use v18.10.0
   nvm alias default v18.10.0
