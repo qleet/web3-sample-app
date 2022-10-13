@@ -1,5 +1,6 @@
 # https://hub.docker.com/_/node/tags
 FROM node:18.10.0-alpine AS builder
+RUN apk --no-cache add git
 RUN npm --global install pnpm
 WORKDIR /app
 COPY package.json ./
