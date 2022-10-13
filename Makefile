@@ -34,7 +34,7 @@ run: install
 
 #image: @ Build Docker Image
 image: install build
-	docker build -t web3-sample-app .
+	docker build -t web3-sample-app:local .
 
 #check-version: @ Ensure VERSION variable is set
 check-version:
@@ -54,3 +54,15 @@ tag-release: check-version
 	@git push origin ${VERSION}
 	@git push
 	@echo "Done."
+
+#kind-deploy: @ Deploy to local kind cluster
+kind-deploy: image
+	kind load docker-image web3-sample-app:local -n kind && \
+	cat ./k8s/ns.yaml | kubectl apply -f - && \
+	cat ./k8s/cm.yaml | kubectl apply -f - && \
+	yq eval '.spec.template.spec.containers[0].image = "web3-sample-app:local"' ./k8s/deployment.yaml | yq eval 'del(.spec.template.spec.containers[0].imagePullSecret)' | kubectl apply -f - && \
+	cat ./k8s/service.yaml | kubectl apply -f -
+
+#kind-undeploy: @ Undeploy from local kind cluster
+kind-undeploy:
+	@kubectl delete -f ./k8s

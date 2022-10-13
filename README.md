@@ -15,10 +15,7 @@
   ```bash
   npm install -g pnpm
   ```
-* [kapp](https://carvel.dev/kapp/docs/latest/install)
-  ```bash
-  curl -L https://carvel.dev/install.sh | bash
-  ```
+  
 ## Features & Plugins
 
 - React, TypeScript, [Vite](https://github.com/vitejs/vite)
@@ -70,14 +67,14 @@ kubectl -n $NS patch serviceaccount default -p '{"imagePullSecrets": [{"name": "
 ### Deploy workload
 
 ```bash
-export KAPP_NAME=react-web3
-kapp deploy -a $KAPP_NAME -f ./k8s --diff-changes --yes --into-ns $NS
-kapp inspect -a $KAPP_NAME  --tree
+kubectl apply -f ./k8s
+
 ```
 
 ### Get workload's IP
 
 ```bash
+export NS=web3
 service_ip=$(kubectl get services web3-sample-app -n  $NS -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
 xdg-open "http://${service_ip}:80" > /dev/null 2>&1
 ```
@@ -85,8 +82,7 @@ xdg-open "http://${service_ip}:80" > /dev/null 2>&1
 ### Delete workload
 
 ```bash
-export KAPP_NAME=react-web3
-kapp delete -a $KAPP_NAME -n default --yes
+kubectl delete -f ./k8s
 ```
 
 ## Release
