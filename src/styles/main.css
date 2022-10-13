@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 .btn:active {
-  @apply opacity-70;
+  @apply opacity-80;
+}
+
+.btn:disabled {
+  @apply opacity-50;
 }

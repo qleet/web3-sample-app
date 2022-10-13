@@ -1,6 +1,6 @@
 {
   "name": "web3-sample-app",
-  "version": "0.0.3",
+  "version": "v0.0.3",
   "private": true,
   "description": "Web3 frontend with React, Vite, TypeScript ane Ether.js",
   "license": "MIT",
@@ -49,5 +49,10 @@
     "tailwindcss": "^3.1.8",
     "typescript": "^4.8.4",
     "vite": "^2.9.15"
+  },
+  "pnpm": {
+    "overrides": {
+      "svgo": "npm:@kingyue/svgo@^2.9.0"
+    }
   }
 }
