@@ -15,7 +15,9 @@
   ```bash
   npm install -g pnpm
   ```
-  
+* [kind >=0.16.0](https://kind.sigs.k8s.io/docs/user/quick-start/#installation)
+* [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
+
 ## Features & Plugins
 
 - React, TypeScript, [Vite](https://github.com/vitejs/vite)
