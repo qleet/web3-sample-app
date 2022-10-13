@@ -1,6 +1,6 @@
 {
   "name": "web3-sample-app",
-  "version": "v0.0.3",
+  "version": "v0.0.4",
   "private": true,
   "description": "Web3 frontend with React, Vite, TypeScript ane Ether.js",
   "license": "MIT",
