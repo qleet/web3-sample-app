@@ -5,7 +5,6 @@ import {DAIBalance, DAIblock, ETHbalance, ETHblock, getDAIBalance, getETHBalance
 import {ethers} from "ethers";
 
 const AccountForm = () => {
-    const ref = useRef(null);
     const delay = ms => new Promise(res => setTimeout(res, ms));
 
     const [destinationAddress, setDestinationAddress] = useState("");
@@ -21,8 +20,9 @@ const AccountForm = () => {
 
         setBalance(0)
         setBlock(0)
+        let assetCbValue : string = (document.getElementById("selectAsset") as HTMLInputElement).value;
 
-        if (asset == "ETH") {
+        if (assetCbValue == "ETH") {
             await getETHBalance(destinationAddress)
             setBalance(ETHbalance)
             setBlock(ETHblock)
@@ -34,6 +34,11 @@ const AccountForm = () => {
         setDisable(false)
     };
 
+    const handleChange = event => {
+        setAsset(event.target.value);
+        getBalance(event)
+    };
+
     return (
         <div className="p-5 shadow text-left flex flex-col">
             <div className="pt-1 font-normal">
@@ -41,8 +46,10 @@ const AccountForm = () => {
                        className="w-96 border form-control mb-5 text-sm text-neutral-700" onChange={event => {
                     setDestinationAddress(event.target.value)
                 }}/>
-                <select disabled={disable} name="selectAsset" id="selectAsset" className="text-neutral-700"
-                        onChange={(e) => setAsset(e.target.value)}>
+                {/*<select value={asset} disabled={disable} name="selectAsset" id="selectAsset" className="text-neutral-700"*/}
+                {/*        onChange={(e) => setAsset(e.target.value)}>*/}
+                    <select value={asset} disabled={disable} name="selectAsset" id="selectAsset" className="text-neutral-700"
+                            onChange={handleChange} >
                     <option value="ETH">ETH</option>
                     <option value="DAI">DAI</option>
                 </select>
