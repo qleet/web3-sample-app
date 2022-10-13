@@ -1,5 +1,7 @@
 # web3-sample-app
 
+Web3 sample app
+
 ## Requirements
 
 * [curl](https://help.ubidots.com/en/articles/2165289-learn-how-to-install-run-curl-on-windows-macosx-linux)
