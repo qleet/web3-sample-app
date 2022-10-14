@@ -60,7 +60,7 @@ kind-deploy: image
 	@kind load docker-image web3-sample-app:$(VERSION) -n kind && \
 	cat ./k8s/ns.yaml | kubectl apply -f - && \
 	cat ./k8s/cm.yaml | kubectl apply --namespace=web3 -f - && \
-	yq eval '.spec.template.spec.containers[0].image = "web3-sample-app:v0.0.5"' ./k8s/deployment.yaml | yq eval 'del(.spec.template.spec.containers[0].imagePullSecret)' | kubectl apply --namespace=web3 -f - && \
+	yq eval '.spec.template.spec.containers[0].image = "web3-sample-app:$(VERSION)"' ./k8s/deployment.yaml | yq eval 'del(.spec.template.spec.containers[0].imagePullSecret)' | kubectl apply --namespace=web3 -f - && \
 	cat ./k8s/service.yaml | kubectl apply --namespace=web3 -f -
 
 #kind-undeploy: @ Undeploy from local kind cluster

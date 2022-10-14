@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: web3-sample-app
-          image: ghcr.io/qleet/web3-sample-app:v0.0.5
+          image: ghcr.io/qleet/web3-sample-app:v0.0.6
           env:
             - name: PORT
               value: "8080"
