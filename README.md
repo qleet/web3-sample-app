@@ -56,13 +56,14 @@ make run
 
 ### Create registry secret
 
-Create `docker-registry` secret to access private image repository. Requires environment variable `$GH_ACCESS_TOKEN`
+Requires GitHub Personal Access Token via environment variable `$GH_ACCESS_TOKEN`
 
 ```bash
 export NS=web3
 kubectl create ns -name $NS
 kubectl delete secret ghcr-login-secret -n $NS
 kubectl create secret docker-registry ghcr-login-secret --docker-server=ghcr.io --docker-username=qleet --docker-password=$GH_ACCESS_TOKEN --docker-email=default -n $NS
+# if you deploying to a Kind cluster, need to assign private created registry secret to a default service account
 kubectl -n $NS patch serviceaccount default -p '{"imagePullSecrets": [{"name": "ghcr-login-secret"}]}'
 ```
 
