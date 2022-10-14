@@ -44,6 +44,8 @@ image          - Build Docker Image
 check-version  - Ensure VERSION variable is set
 release        - Creates and pushes tag for the current $VERSION
 tag-release    - Create and push a new tag
+kind-deploy    - Deploy to local kind cluster
+kind-undeploy  - Undeploy from local kind cluster
 ```
 
 ## Usage
@@ -54,35 +56,49 @@ make run
 
 ## Kubernetes deployment
 
-### Create registry secret
+### Deploy using docker image from private repository - ghcr.io
+
+#### Create registry secret
 
 Requires GitHub Personal Access Token via environment variable `$GH_ACCESS_TOKEN`
 
 ```bash
-kubectl create ns -name web3
-kubectl delete secret ghcr-login-secret -n web3
-kubectl create secret docker-registry ghcr-login-secret --docker-server=ghcr.io --docker-username=qleet --docker-password=$GH_ACCESS_TOKEN --docker-email=default -n web3
+kubectl create ns -name web3 --dry-run=client -o yaml | kubectl apply -f -
+kubectl delete secret ghcr-login-secret -n web3 --ignore-not-found=true
+kubectl create secret docker-registry ghcr-login-secret --docker-server=ghcr.io --docker-username=qleet --docker-password=$GH_ACCESS_TOKEN --docker-email=default -n web3 --dry-run=client -o yaml | kubectl apply -f -
 # if you deploying to a Kind cluster, need to assign private created registry secret to a default service account
 kubectl -n web3 patch serviceaccount default -p '{"imagePullSecrets": [{"name": "ghcr-login-secret"}]}'
 ```
 
-### Deploy workload
+#### Deploy workload
 
 ```bash
 kubectl apply -f ./k8s --namespace=web3 --validate=false
 ```
 
-### Get workload's IP
+#### Get workload's IP
 
 ```bash
 service_ip=$(kubectl get services web3-sample-app -n web3 -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
 xdg-open "http://${service_ip}:80" > /dev/null 2>&1
 ```
 
-### Delete workload
+#### Delete workload
 
 ```bash
 kubectl delete -f ./k8s --namespace=web3
+```
+
+### Deploy to local Kind cluster
+
+```bash
+make kind-deploy
+```
+
+### Undeploy from local Kind cluster
+
+```bash
+make kind-undeploy
 ```
 
 ## Release

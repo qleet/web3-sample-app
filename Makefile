@@ -34,7 +34,7 @@ run: install
 
 #image: @ Build Docker Image
 image: install build
-	docker build -t web3-sample-app:v0.0.5 .
+	docker build -t web3-sample-app:$(VERSION) .
 
 #check-version: @ Ensure VERSION variable is set
 check-version:
@@ -56,8 +56,8 @@ tag-release: check-version
 	@echo "Done."
 
 #kind-deploy: @ Deploy to local kind cluster
-kind-deploy:
-	@kind load docker-image web3-sample-app:v0.0.5 -n kind && \
+kind-deploy: image
+	@kind load docker-image web3-sample-app:$(VERSION) -n kind && \
 	cat ./k8s/ns.yaml | kubectl apply -f - && \
 	cat ./k8s/cm.yaml | kubectl apply --namespace=web3 -f - && \
 	yq eval '.spec.template.spec.containers[0].image = "web3-sample-app:v0.0.5"' ./k8s/deployment.yaml | yq eval 'del(.spec.template.spec.containers[0].imagePullSecret)' | kubectl apply --namespace=web3 -f - && \
@@ -65,6 +65,6 @@ kind-deploy:
 
 #kind-undeploy: @ Undeploy from local kind cluster
 kind-undeploy:
-	@kubectl delete -f ./k8s/deployment.yaml --namespace=web3 && \
-	kubectl delete -f ./k8s/cm.yaml --namespace=web3 && \
-	kubectl delete -f ./k8s/ns.yaml --namespace=web3 && \
+	@kubectl delete -f ./k8s/deployment.yaml --namespace=web3 --ignore-not-found=true && \
+	kubectl delete -f ./k8s/cm.yaml --namespace=web3 --ignore-not-found=true && \
+	kubectl delete -f ./k8s/ns.yaml --ignore-not-found=true
