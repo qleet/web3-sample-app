@@ -1,5 +1,5 @@
 // AccountForm.tsx
-import React, {useRef, useState} from 'react'
+import React, {useState} from 'react'
 import {t} from "i18next";
 import {DAIBalance, DAIblock, ETHbalance, ETHblock, getDAIBalance, getETHBalance} from "@/service/ether";
 import {ethers} from "ethers";
