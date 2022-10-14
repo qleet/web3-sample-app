@@ -59,33 +59,30 @@ make run
 Requires GitHub Personal Access Token via environment variable `$GH_ACCESS_TOKEN`
 
 ```bash
-export NS=web3
-kubectl create ns -name $NS
-kubectl delete secret ghcr-login-secret -n $NS
-kubectl create secret docker-registry ghcr-login-secret --docker-server=ghcr.io --docker-username=qleet --docker-password=$GH_ACCESS_TOKEN --docker-email=default -n $NS
+kubectl create ns -name web3
+kubectl delete secret ghcr-login-secret -n web3
+kubectl create secret docker-registry ghcr-login-secret --docker-server=ghcr.io --docker-username=qleet --docker-password=$GH_ACCESS_TOKEN --docker-email=default -n web3
 # if you deploying to a Kind cluster, need to assign private created registry secret to a default service account
-kubectl -n $NS patch serviceaccount default -p '{"imagePullSecrets": [{"name": "ghcr-login-secret"}]}'
+kubectl -n web3 patch serviceaccount default -p '{"imagePullSecrets": [{"name": "ghcr-login-secret"}]}'
 ```
 
 ### Deploy workload
 
 ```bash
-kubectl apply -f ./k8s
-
+kubectl apply -f ./k8s --namespace=web3 --validate=false
 ```
 
 ### Get workload's IP
 
 ```bash
-export NS=web3
-service_ip=$(kubectl get services web3-sample-app -n  $NS -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
+service_ip=$(kubectl get services web3-sample-app -n web3 -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
 xdg-open "http://${service_ip}:80" > /dev/null 2>&1
 ```
 
 ### Delete workload
 
 ```bash
-kubectl delete -f ./k8s
+kubectl delete -f ./k8s --namespace=web3
 ```
 
 ## Release
