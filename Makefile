@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := help
-VERSION := $(shell cat ./src/components/Layout.tsx | grep "const Version =" | awk -F"'" '{print $2}' | tr -d "\'\/")
+VERSION := $(shell cat ./src/components/Layout.tsx | sed -n "s#const Version =\s*'\(.*\)'#\1#p" )
 
 #help: @ List available tasks
 help:
