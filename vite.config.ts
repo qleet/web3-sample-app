@@ -18,8 +18,8 @@ export default defineConfig({
     minify: 'terser',
     terserOptions: {
       compress: {
-        drop_console: true, // 所有console
-        // pure_funcs: ['console.log'], // 单独指定
+        drop_console: true,
+        // pure_funcs: ['console.log'],
         drop_debugger: true,
       },
     },
@@ -36,7 +36,7 @@ export default defineConfig({
       '/api/': {
         target: 'https://url.devserver/',
         changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, ''),
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },
