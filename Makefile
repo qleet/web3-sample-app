@@ -48,12 +48,12 @@ release: check-version tag-release
 
 #tag-release: @ Create and push a new tag
 tag-release: check-version
-	@echo -n "Are you sure to create and push ${VERSION} tag? [y/N] " && read ans && [ $${ans:-N} = y ]
-	@git commit -a -s -m "Cut ${VERSION} release"
-	@git tag ${VERSION}
-	@git push origin ${VERSION}
-	@git push
-	@echo "Done."
+	echo -n "Are you sure to create and push ${VERSION} tag? [y/N] " && read ans && [ $${ans:-N} = y ]
+	git commit -a -s -m "Cut ${VERSION} release"
+	git tag ${VERSION}
+	git push origin ${VERSION}
+	git push
+	echo "Done."
 
 #kind-deploy: @ Deploy to local kind cluster
 kind-deploy: image
