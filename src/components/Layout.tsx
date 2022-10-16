@@ -22,7 +22,7 @@ import Logo from './Logo'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-const Version = "v0.0.6"
+const Version = 'v0.0.6'
 
 const LanguageSwitch = () => {
   const [anchorEl, setAnchorEl] = useState(null)
@@ -71,7 +71,7 @@ const LanguageSwitch = () => {
 
 const Header = () => {
   const drawerAnchor = 'left'
-  const [drawerOpen, setDrawerOpen]  = useState(false)
+  const [drawerOpen, setDrawerOpen] = useState(false)
   const { t } = useTranslation()
   const toggleDrawer = (open: boolean) => (event) => {
     if (

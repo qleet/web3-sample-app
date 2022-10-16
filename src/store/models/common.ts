@@ -8,19 +8,19 @@ export type CommonState = {
 
 export const common = createModel<RootModel>()({
   state: {
-    language: DefaultLanguage
+    language: DefaultLanguage,
   } as CommonState,
   reducers: {
     SET_LANGUAGE(state, language: string) {
       return {
         ...state,
-        language
+        language,
       }
-    }
+    },
   },
   effects: (dispatch) => ({
     async setLanguage(payload: string) {
       dispatch.common.SET_LANGUAGE(payload)
-    }
-  })
+    },
+  }),
 })

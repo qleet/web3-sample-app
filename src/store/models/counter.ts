@@ -8,11 +8,11 @@ export const counter = createModel<RootModel>()({
   reducers: {
     SET_NUMBER: (state: CounterState, payload: number) => {
       return state + payload
-    }
+    },
   },
   effects: (dispatch) => ({
     async inc(payload: number) {
       dispatch.counter.SET_NUMBER(payload)
-    }
-  })
+    },
+  }),
 })
