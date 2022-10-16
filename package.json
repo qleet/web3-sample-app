@@ -11,7 +11,8 @@
     "format": "pretty-quick",
     "preview": "vite preview",
     "prettier": "prettier --ignore-path .gitignore --write 'src/**/*.{ts,tsx,js,jsx}'",
-    "prettier:diff": "prettier -l 'src/**/*.{ts,tsx,js,jsx}'"
+    "prettier:diff": "prettier -l 'src/**/*.{ts,tsx,js,jsx}'",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
@@ -41,6 +42,7 @@
     "@vitejs/plugin-react": "^2.1.0",
     "autoprefixer": "^10.4.12",
     "eslint-config-airbnb-typescript": "^17.0.0",
+    "husky": "^8.0.1",
     "postcss": "^8.4.18",
     "prettier": "^2.7.1",
     "pretty-quick": "^3.1.3",
