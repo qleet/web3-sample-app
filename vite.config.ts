@@ -1,7 +1,8 @@
-import { defineConfig } from 'vite'
+import { defineConfig, splitVendorChunkPlugin } from 'vite'
 import { join } from 'path'
 import react from '@vitejs/plugin-react'
 import nodePolyfills from 'rollup-plugin-polyfill-node'
+import { chunkSplitPlugin } from 'vite-plugin-chunk-split'
 
 const production = process.env.NODE_ENV === 'production'
 const resolve = (dir: string) => join(__dirname, dir)
@@ -42,6 +43,7 @@ export default defineConfig({
   },
   plugins: [
     react(),
+    chunkSplitPlugin(),
     !production &&
       nodePolyfills({
         include: [
