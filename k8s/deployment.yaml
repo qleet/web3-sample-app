@@ -13,10 +13,10 @@ spec:
     spec:
       containers:
         - name: web3-sample-app
-          image: ghcr.io/qleet/web3-sample-app:v0.0.7
+          image: ghcr.io/qleet/web3-sample-app:v0.0.8
           env:
             - name: PORT
-              value: "8080"
+              value: '8080'
             - name: VITE_RPC_ENDPOINT
               valueFrom:
                 configMapKeyRef:
@@ -26,11 +26,11 @@ spec:
             - containerPort: 8080
           resources:
             requests:
-              cpu: "1m"
-              memory: "6Mi"
+              cpu: '1m'
+              memory: '6Mi'
             limits:
-              cpu: "3m"
-              memory: "8Mi"
+              cpu: '3m'
+              memory: '8Mi'
           imagePullSecret:
             - name: ghcr-login-secret
       restartPolicy: Always
