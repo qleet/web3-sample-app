@@ -60,7 +60,7 @@ kind-deploy: image
 	@kind load docker-image web3-sample-app:$(VERSION) -n kind && \
 	cat ./k8s/ns.yaml | kubectl apply -f - && \
 	cat ./k8s/cm.yaml | kubectl apply --namespace=web3 -f - && \
-	yq eval '.spec.template.spec.containers[0].image = "web3-sample-app:$(VERSION)"' ./k8s/deployment.yaml | yq eval 'del(.spec.template.spec.containers[0].imagePullSecret)' | kubectl apply --namespace=web3 -f - && \
+	yq eval '.spec.template.spec.containers[0].image = "web3-sample-app:$(VERSION)"' ./k8s/deployment.yaml | kubectl apply --namespace=web3 -f - && \
 	cat ./k8s/service.yaml | kubectl apply --namespace=web3 -f -
 
 #kind-undeploy: @ Undeploy from local kind cluster
@@ -68,3 +68,9 @@ kind-undeploy:
 	@kubectl delete -f ./k8s/deployment.yaml --namespace=web3 --ignore-not-found=true && \
 	kubectl delete -f ./k8s/cm.yaml --namespace=web3 --ignore-not-found=true && \
 	kubectl delete -f ./k8s/ns.yaml --ignore-not-found=true
+
+# ssh into pod
+# kubectl exec --stdin --tty -n web3 web3-sample-app-569598dd94-qvg4m -- /bin/sh
+
+# pod logs
+# kubectl logs -n web3 web3-sample-app-569598dd94-qvg4m

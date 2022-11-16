@@ -17,11 +17,11 @@ spec:
           env:
             - name: PORT
               value: '8080'
-            - name: VITE_RPC_ENDPOINT
+            - name: RPCENDPOINT
               valueFrom:
                 configMapKeyRef:
                   name: web3-sample-app-config
-                  key: rpc.endpoint
+                  key: RPCENDPOINT
           ports:
             - containerPort: 8080
           resources:
@@ -31,6 +31,4 @@ spec:
             limits:
               cpu: '3m'
               memory: '8Mi'
-          imagePullSecret:
-            - name: ghcr-login-secret
       restartPolicy: Always

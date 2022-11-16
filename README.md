@@ -2,8 +2,8 @@
 
 ## Requirements
 
-* [curl](https://help.ubidots.com/en/articles/2165289-learn-how-to-install-run-curl-on-windows-macosx-linux)
-* [nvm](https://github.com/nvm-sh/nvm#install--update-script)
+- [curl](https://help.ubidots.com/en/articles/2165289-learn-how-to-install-run-curl-on-windows-macosx-linux)
+- [nvm](https://github.com/nvm-sh/nvm#install--update-script)
   ```bash
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v$(curl -sL https://api.github.com/repos/nvm-sh/nvm/releases/latest  | grep '"tag_name":' | awk -F '"' '{printf("%s",$4)}' | cut -c 2-)/install.sh | bash
   nvm install v18.10.0
@@ -11,12 +11,12 @@
   nvm alias default v18.10.0
   npm install npm --global
   ```
-* [pnpm](https://pnpm.io/installation)
+- [pnpm](https://pnpm.io/installation)
   ```bash
   npm install -g pnpm
   ```
-* [kind >=0.16.0](https://kind.sigs.k8s.io/docs/user/quick-start/#installation)
-* [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
+- [kind >=0.16.0](https://kind.sigs.k8s.io/docs/user/quick-start/#installation)
+- [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
 
 ## Features & Plugins
 
@@ -30,6 +30,7 @@
 ```bash
 $ make help
 ```
+
 ```text
 Usage: make COMMAND
 Commands :
@@ -56,19 +57,7 @@ make run
 
 ## Kubernetes deployment
 
-### Deploy using docker image from private repository - ghcr.io
-
-#### Create registry secret
-
-Requires GitHub Personal Access Token via environment variable `$GH_ACCESS_TOKEN`
-
-```bash
-kubectl create ns -name web3 --dry-run=client -o yaml | kubectl apply -f -
-kubectl delete secret ghcr-login-secret -n web3 --ignore-not-found=true
-kubectl create secret docker-registry ghcr-login-secret --docker-server=ghcr.io --docker-username=qleet --docker-password=$GH_ACCESS_TOKEN --docker-email=default -n web3 --dry-run=client -o yaml | kubectl apply -f -
-# if you deploying to a Kind cluster, need to assign private created registry secret to a default service account
-kubectl -n web3 patch serviceaccount default -p '{"imagePullSecrets": [{"name": "ghcr-login-secret"}]}'
-```
+### Deploy using docker image from public repository
 
 #### Deploy workload
 
@@ -104,6 +93,7 @@ make kind-undeploy
 ## Release
 
 - Update field [Version](./src/components/Layout.tsx#L25)
+
   ```text
   const Version = "vX.Y.Z"
   ```

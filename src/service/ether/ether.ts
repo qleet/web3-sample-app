@@ -1,5 +1,5 @@
 import { ethers } from 'ethers'
-import { RPC_ENDPOINT } from '@/service/ether/constants/config'
+import Config from '@/assets/config.json'
 
 export var provider
 export var ETHbalance
@@ -12,7 +12,7 @@ export var DAIBalanceFormatted
 export var DAIblock
 
 export function getProvider() {
-  provider = new ethers.providers.JsonRpcProvider(RPC_ENDPOINT)
+  provider = new ethers.providers.JsonRpcProvider(Config.RPCENDPOINT)
 }
 
 export async function getETHBalance(account) {

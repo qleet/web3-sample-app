@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: web3-sample-app-config
 data:
-  rpc.endpoint: https://compatible-greatest-energy.discover.quiknode.pro/47ac872f53b4c944c4000778f004280c9172eda8/
+  RPCENDPOINT: https://rpc.ankr.com/eth/
