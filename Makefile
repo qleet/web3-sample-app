@@ -6,13 +6,13 @@ help:
 	@clear
 	@echo "Usage: make COMMAND"
 	@echo "Commands :"
-	@grep -E '[a-zA-Z\.\-]+:.*?@ .*$$' $(MAKEFILE_LIST)| tr -d '#' | awk 'BEGIN {FS = ":.*?@ "}; {printf "\033[32m%-14s\033[0m - %s\n", $$1, $$2}'
+	@grep -E '[a-zA-Z\.\-]+:.*?@ .*$$' $(MAKEFILE_LIST)| tr -d '#' | awk 'BEGIN {FS = ":.*?@ "}; {printf "\033[32m%-13s\033[0m - %s\n", $$1, $$2}'
 
 #clean: @ Cleanup
 clean:
 	@rm -rf node_modules/ dist/
 
-#install: @ Install
+#install: @ Install NodeJS dependencies
 install:
 	pnpm install
 
@@ -20,11 +20,7 @@ install:
 build: install
 	pnpm build
 
-#update: @ Update
-update:
-	pnpm update
-
-#upgrade: @ Upgrade
+#upgrade: @ Upgrade dependencies
 upgrade:
 	pnpm upgrade
 
@@ -32,7 +28,7 @@ upgrade:
 run: install
 	pnpm dev
 
-#image: @ Build Docker Image
+#image: @ Build a Docker image
 image: install build
 	docker build -t web3-sample-app:$(VERSION) .
 
@@ -43,11 +39,8 @@ ifndef VERSION
 endif
 	@echo -n ""
 
-#release: @ Creates and pushes tag for the current $VERSION
-release: check-version tag-release
-
-#tag-release: @ Create and push a new tag
-tag-release: check-version
+#release: @ Create and push a new tag
+release: check-version check-version
 	echo -n "Are you sure to create and push ${VERSION} tag? [y/N] " && read ans && [ $${ans:-N} = y ]
 	git commit -a -s -m "Cut ${VERSION} release"
 	git tag ${VERSION}
@@ -55,7 +48,7 @@ tag-release: check-version
 	git push
 	echo "Done."
 
-#kind-deploy: @ Deploy to local kind cluster
+#kind-deploy: @ Deploy to a local KinD cluster
 kind-deploy: image
 	@kind load docker-image web3-sample-app:$(VERSION) -n kind && \
 	cat ./k8s/ns.yaml | kubectl apply -f - && \
@@ -63,11 +56,17 @@ kind-deploy: image
 	yq eval '.spec.template.spec.containers[0].image = "web3-sample-app:$(VERSION)"' ./k8s/deployment.yaml | kubectl apply --namespace=web3 -f - && \
 	cat ./k8s/service.yaml | kubectl apply --namespace=web3 -f -
 
-#kind-undeploy: @ Undeploy from local kind cluster
+#kind-undeploy: @ Undeploy from a local KinD cluster
 kind-undeploy:
 	@kubectl delete -f ./k8s/deployment.yaml --namespace=web3 --ignore-not-found=true && \
 	kubectl delete -f ./k8s/cm.yaml --namespace=web3 --ignore-not-found=true && \
 	kubectl delete -f ./k8s/ns.yaml --ignore-not-found=true
+
+#kind-redeploy: @ Redeploy to a local KinD cluster
+kind-redeploy:
+	@kubectl delete -f ./k8s/deployment.yaml --namespace=web3 --ignore-not-found=true && \
+	kubectl apply -f ./k8s/cm.yaml --namespace=web3 && \
+	yq eval '.spec.template.spec.containers[0].image = "web3-sample-app:$(VERSION)"' ./k8s/deployment.yaml | kubectl apply --namespace=web3 -f -
 
 # ssh into pod
 # kubectl exec --stdin --tty -n web3 web3-sample-app-569598dd94-qvg4m -- /bin/sh

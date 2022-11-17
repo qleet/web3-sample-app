@@ -5,7 +5,6 @@
 - [curl](https://help.ubidots.com/en/articles/2165289-learn-how-to-install-run-curl-on-windows-macosx-linux)
 - [nvm](https://github.com/nvm-sh/nvm#install--update-script)
   ```bash
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v$(curl -sL https://api.github.com/repos/nvm-sh/nvm/releases/latest  | grep '"tag_name":' | awk -F '"' '{printf("%s",$4)}' | cut -c 2-)/install.sh | bash
   nvm install v18.10.0
   nvm use v18.10.0
   nvm alias default v18.10.0
@@ -34,19 +33,18 @@ $ make help
 ```text
 Usage: make COMMAND
 Commands :
-help           - List available tasks
-clean          - Cleanup
-install        - Install
-build          - Build
-update         - Update
-upgrade        - Upgrade
-run            - Run
-image          - Build Docker Image
-check-version  - Ensure VERSION variable is set
-release        - Creates and pushes tag for the current $VERSION
-tag-release    - Create and push a new tag
-kind-deploy    - Deploy to local kind cluster
-kind-undeploy  - Undeploy from local kind cluster
+help          - List available tasks
+clean         - Cleanup
+install       - Install NodeJS dependencies
+build         - Build
+upgrade       - Upgrade dependencies
+run           - Run
+image         - Build a Docker image
+check-version - Ensure VERSION variable is set
+release       - Create and push a new tag
+kind-deploy   - Deploy to a local KinD cluster
+kind-undeploy - Undeploy from a local KinD cluster
+kind-redeploy - Redeploy to a local KinD cluster
 ```
 
 ## Usage
