@@ -4,7 +4,7 @@ metadata:
   name: web3-sample-app
 spec:
   ports:
-    - port: 80
+    - port: 8080
       targetPort: 8080
   type: LoadBalancer
   selector:

@@ -21,18 +21,18 @@ specifiers:
   axios: ^1.1.3
   eslint-config-airbnb-typescript: ^17.0.0
   ethers: ^5.7.2
-  i18next: ^21.10.0
-  i18next-http-backend: ^1.4.5
+  i18next: ^22.0.5
+  i18next-http-backend: ^2.0.1
   mui: ^0.0.1
   postcss: ^8.4.19
   prettier: ^2.7.1
   pretty-quick: ^3.1.3
   react: ^18.2.0
   react-dom: ^18.2.0
-  react-i18next: ^11.18.6
+  react-i18next: ^12.0.0
   react-redux: ^8.0.5
   react-router-dom: ^6.4.3
-  rollup-plugin-polyfill-node: ^0.10.2
+  rollup-plugin-polyfill-node: ^0.11.0
   tailwindcss: ^3.2.4
   terser: ^5.15.1
   typescript: ^4.9.3
@@ -47,12 +47,12 @@ dependencies:
   '@rematch/core': 2.2.0_redux@4.2.0
   axios: 1.1.3
   ethers: 5.7.2
-  i18next: 21.10.0
-  i18next-http-backend: 1.4.5
+  i18next: 22.0.5
+  i18next-http-backend: 2.0.1
   mui: 0.0.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  react-i18next: 11.18.6_vfm63zmruocgezzfl2v26zlzpy
+  react-i18next: 12.0.0_e52s5leb62x5eudkmfoztpifde
   react-redux: 8.0.5_moha6x5fbqoiok2ot63p7hwafm
   react-router-dom: 6.4.3_biqbaboplfbrettd7655fr4n2y
 
@@ -70,7 +70,7 @@ devDependencies:
   postcss: 8.4.19
   prettier: 2.7.1
   pretty-quick: 3.1.3_prettier@2.7.1
-  rollup-plugin-polyfill-node: 0.10.2_rollup@2.79.1
+  rollup-plugin-polyfill-node: 0.11.0_rollup@3.3.0
   tailwindcss: 3.2.4_postcss@8.4.19
   terser: 5.15.1
   typescript: 4.9.3
@@ -1079,31 +1079,38 @@ packages:
     engines: {node: '>=14'}
     dev: false
 
-  /@rollup/plugin-inject/4.0.4_rollup@2.79.1:
-    resolution: {integrity: sha512-4pbcU4J/nS+zuHk+c+OL3WtmEQhqxlZ9uqfjQMQDOHOPld7PsCd8k5LWs8h5wjwJN7MgnAn768F2sDxEP4eNFQ==}
+  /@rollup/plugin-inject/5.0.2_rollup@3.3.0:
+    resolution: {integrity: sha512-zRthPC/sZ2OaQwPh2LvFn0A+3SyMAZR1Vqsp89mWkIuGXKswT8ty1JWj1pf7xdZvft4gHZaCuhdopuiCwjclWg==}
+    engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: ^1.20.0 || ^2.0.0
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
     dependencies:
-      '@rollup/pluginutils': 3.1.0_rollup@2.79.1
+      '@rollup/pluginutils': 5.0.2_rollup@3.3.0
       estree-walker: 2.0.2
-      magic-string: 0.25.9
-      rollup: 2.79.1
+      magic-string: 0.26.7
+      rollup: 3.3.0
     dev: true
 
-  /@rollup/pluginutils/3.1.0_rollup@2.79.1:
-    resolution: {integrity: sha512-GksZ6pr6TpIjHm8h9lSQ8pi8BE9VeubNT0OMJ3B5uZJ8pz73NPiqOtCog/x2/QzM1ENChPKxMDhiQuRHsqc+lg==}
-    engines: {node: '>= 8.0.0'}
+  /@rollup/pluginutils/5.0.2_rollup@3.3.0:
+    resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
+    engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: ^1.20.0||^2.0.0
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
     dependencies:
-      '@types/estree': 0.0.39
-      estree-walker: 1.0.1
+      '@types/estree': 1.0.0
+      estree-walker: 2.0.2
       picomatch: 2.3.1
-      rollup: 2.79.1
+      rollup: 3.3.0
     dev: true
 
-  /@types/estree/0.0.39:
-    resolution: {integrity: sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==}
+  /@types/estree/1.0.0:
+    resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
     dev: true
 
   /@types/history/4.7.11:
@@ -2308,10 +2315,6 @@ packages:
     engines: {node: '>=4.0'}
     dev: true
 
-  /estree-walker/1.0.1:
-    resolution: {integrity: sha512-1fMXF3YP4pZZVozF8j/ZLfvnR8NSIljt56UhbZ5PeeDmmGHpgpdwQt7ITlGvYaQukCvuBRMLEiKiYC+oeIg4cg==}
-    dev: true
-
   /estree-walker/2.0.2:
     resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
     dev: true
@@ -2648,16 +2651,16 @@ packages:
     engines: {node: '>=8.12.0'}
     dev: true
 
-  /i18next-http-backend/1.4.5:
-    resolution: {integrity: sha512-tLuHWuLWl6CmS07o+UB6EcQCaUjrZ1yhdseIN7sfq0u7phsMePJ8pqlGhIAdRDPF/q7ooyo5MID5DRFBCH+x5w==}
+  /i18next-http-backend/2.0.1:
+    resolution: {integrity: sha512-kzvSkOT3yhVijumDlp8/TgD1v07lYdFXsf5YYbB7Yu+K2S6PO0lKgZ4c/fyFcAKWiAiTjt9uVecBAbnJjKzhOw==}
     dependencies:
       cross-fetch: 3.1.5
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /i18next/21.10.0:
-    resolution: {integrity: sha512-YeuIBmFsGjUfO3qBmMOc0rQaun4mIpGKET5WDwvu8lU7gvwpcariZLNtL0Fzj+zazcHUrlXHiptcFhBMFaxzfg==}
+  /i18next/22.0.5:
+    resolution: {integrity: sha512-N2AXKCLHzv1ClfLqiwbAPJHClovfRv9iplySiZ/S3LfQ7PNjkVEkVpFbhCXDsPhQd6kLp6DKjbzpowniE8Mdiw==}
     dependencies:
       '@babel/runtime': 7.20.1
     dev: false
@@ -2911,12 +2914,6 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
-    dev: true
-
-  /magic-string/0.25.9:
-    resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
-    dependencies:
-      sourcemap-codec: 1.4.8
     dev: true
 
   /magic-string/0.26.7:
@@ -3351,8 +3348,8 @@ packages:
       scheduler: 0.23.0
     dev: false
 
-  /react-i18next/11.18.6_vfm63zmruocgezzfl2v26zlzpy:
-    resolution: {integrity: sha512-yHb2F9BiT0lqoQDt8loZ5gWP331GwctHz9tYQ8A2EIEUu+CcEdjBLQWli1USG3RdWQt3W+jqQLg/d4rrQR96LA==}
+  /react-i18next/12.0.0_e52s5leb62x5eudkmfoztpifde:
+    resolution: {integrity: sha512-/O7N6aIEAl1FaWZBNvhdIo9itvF/MO/nRKr9pYqRc9LhuC1u21SlfwpiYQqvaeNSEW3g3qUXLREOWMt+gxrWbg==}
     peerDependencies:
       i18next: '>= 19.0.0'
       react: '>= 16.8.0'
@@ -3366,7 +3363,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.1
       html-parse-stringify: 3.0.1
-      i18next: 21.10.0
+      i18next: 22.0.5
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
@@ -3520,13 +3517,13 @@ packages:
       glob: 7.2.3
     dev: true
 
-  /rollup-plugin-polyfill-node/0.10.2_rollup@2.79.1:
-    resolution: {integrity: sha512-5GMywXiLiuQP6ZzED/LO/Q0HyDi2W6b8VN+Zd3oB0opIjyRs494Me2ZMaqKWDNbGiW4jvvzl6L2n4zRgxS9cSQ==}
+  /rollup-plugin-polyfill-node/0.11.0_rollup@3.3.0:
+    resolution: {integrity: sha512-5t+qhq4LAQKQBgbPOQJEoxxGzU5b+zLfvzpUAGy9u0MCMs8y+mrjUAv8+xrkWdxnwXQwJtjmCMnA9lCflsMzNw==}
     peerDependencies:
-      rollup: ^1.20.0 || ^2.0.0
+      rollup: ^1.20.0 || ^2.0.0 || ^3.0.0
     dependencies:
-      '@rollup/plugin-inject': 4.0.4_rollup@2.79.1
-      rollup: 2.79.1
+      '@rollup/plugin-inject': 5.0.2_rollup@3.3.0
+      rollup: 3.3.0
     dev: true
 
   /rollup/2.78.1:
@@ -3540,6 +3537,14 @@ packages:
   /rollup/2.79.1:
     resolution: {integrity: sha512-uKxbd0IhMZOhjAiD5oAFp7BqvkA4Dv47qpOCtaNvng4HBwdbWtdOh8f5nZNuk2rp51PMGk3bzfWu5oayNEuYnw==}
     engines: {node: '>=10.0.0'}
+    hasBin: true
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
+
+  /rollup/3.3.0:
+    resolution: {integrity: sha512-wqOV/vUJCYEbWsXvwCkgGWvgaEnsbn4jxBQWKpN816CqsmCimDmCNJI83c6if7QVD4v/zlyRzxN7U2yDT5rfoA==}
+    engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
       fsevents: 2.3.2

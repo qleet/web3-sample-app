@@ -69,7 +69,7 @@ kubectl apply -f ./k8s --namespace=web3 --validate=false
 
 ```bash
 service_ip=$(kubectl get services web3-sample-app -n web3 -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
-xdg-open "http://${service_ip}:80" > /dev/null 2>&1
+xdg-open "http://${service_ip}:8080" > /dev/null 2>&1
 ```
 
 #### Delete workload
@@ -102,3 +102,9 @@ make kind-undeploy
   ```bash
   make release
   ```
+
+Valid eth address to test:
+
+```
+0xeB2629a2734e272Bcc07BDA959863f316F4bD4Cf
+```
