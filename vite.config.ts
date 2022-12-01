@@ -32,14 +32,14 @@ export default defineConfig({
     },
   },
   server: {
-    port: 8888,
-    proxy: {
-      '/api/': {
-        target: 'https://url.devserver/',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
-      },
-    },
+    port: 8080,
+    // proxy: {
+    //   '/api/': {
+    //     target: 'https://url.devserver/',
+    //     changeOrigin: true,
+    //     rewrite: (path) => path.replace(/^\/api/, ''),
+    //   },
+    // },
   },
   plugins: [
     react(),

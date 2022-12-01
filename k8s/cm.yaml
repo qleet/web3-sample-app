@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: web3-sample-app-config
 data:
-  RPCENDPOINT: https://rpc.ankr.com/eth/
+  VITE_RPCENDPOINT: https://rpc.ankr.com/eth/

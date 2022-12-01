@@ -7,7 +7,7 @@
   "author": "AndriyKalashnykov(AndriyKalashnykov@gmail.com)",
   "scripts": {
     "build": "tsc && vite build",
-    "dev": "vite",
+    "dev": "vite --host",
     "preview": "vite preview",
     "prettier": "prettier --ignore-path .gitignore --write 'src/**/*.{ts,tsx,js,jsx}'",
     "prettier:diff": "prettier -l 'src/**/*.{ts,tsx,js,jsx}'"

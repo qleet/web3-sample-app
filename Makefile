@@ -26,11 +26,20 @@ upgrade:
 
 #run: @ Run
 run: install
-	pnpm dev
+	@export VITE_RPCENDPOINT=https://rpc.ankr.com/eth && npm run dev
 
-#image: @ Build a Docker image
-image: install build
+#image-build: @ Build a Docker image
+image-build: install
 	docker build -t web3-sample-app:$(VERSION) .
+
+#image-run: @ Run a Docker image
+image-run:
+	@docker run --rm -p 8080:8080 --name web3 web3-sample-app:$(VERSION)
+#-e VITE_RPCENDPOINT=https://rpc.ankr.com/eth
+
+#image-stop: @ Stop a Docker image
+image-stop:
+	@docker stop web3 || true
 
 #check-version: @ Ensure VERSION variable is set
 check-version:
@@ -49,7 +58,7 @@ release: check-version check-version
 	echo "Done."
 
 #kind-deploy: @ Deploy to a local KinD cluster
-kind-deploy: image
+kind-deploy: image-build
 	@kind load docker-image web3-sample-app:$(VERSION) -n kind && \
 	cat ./k8s/ns.yaml | kubectl apply -f - && \
 	cat ./k8s/cm.yaml | kubectl apply --namespace=web3 -f - && \

@@ -11,8 +11,14 @@ export var DAIBalance;
 export var DAIBalanceFormatted;
 export var DAIblock;
 
+// export var RPCENDPOINT = JSON.stringify(import.meta.env.VITE_RPCENDPOINT) as string;
+// export const variables = {
+//   RPCENDPOINT: <string>import.meta.env.VITE_RPCENDPOINT,
+//   RPCENDPOINT2: <string>process.env.VITE_RPCENDPOINT
+// };
+
 export async function getProvider() {
-  provider = new ethers.providers.JsonRpcProvider({ url: Config.RPCENDPOINT, timeout: 1000 });
+  provider = new ethers.providers.JsonRpcProvider(import.meta.env.VITE_RPCENDPOINT);
   await provider.ready;
 }
 
