@@ -39,7 +39,9 @@ install       - Install NodeJS dependencies
 build         - Build
 upgrade       - Upgrade dependencies
 run           - Run
-image         - Build a Docker image
+image-build   - Build a Docker image
+image-run     - Run a Docker image
+image-stop    - Stop a Docker image
 check-version - Ensure VERSION variable is set
 release       - Create and push a new tag
 kind-deploy   - Deploy to a local KinD cluster
