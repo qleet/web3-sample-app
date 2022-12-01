@@ -22,7 +22,7 @@ import Logo from './Logo'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-const Version = 'v0.0.13'
+const Version = 'v0.0.14'
 
 const LanguageSwitch = () => {
   const [anchorEl, setAnchorEl] = useState(null)
