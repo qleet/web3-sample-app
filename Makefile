@@ -49,7 +49,7 @@ endif
 	@echo -n ""
 
 #release: @ Create and push a new tag
-release: check-version check-version
+release: check-version
 	@echo -n "Are you sure to create and push ${VERSION} tag? [y/N] " && read ans && [ $${ans:-N} = y ]
 	git commit -a -s -m "Cut ${VERSION} release"
 	git tag ${VERSION}
